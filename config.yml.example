@@ -1,0 +1,19 @@
+
+credentials:
+  public_key: XXXX
+  member_token: XXXXXXXXXXXXXXXXXXXXXXXXX
+
+hipchat:
+  api_key: XXXXXXXXXXXXXXXXXXXXXXXXX
+  user: eClaire
+  room: Team Room
+
+boards:
+  Board1:
+    id: 123abc123abc123abc123abc
+    printer: QL-570
+
+  Board2:
+    id: 123abc123abc123abc123ab2
+    printer: QL-570
+    notify: false

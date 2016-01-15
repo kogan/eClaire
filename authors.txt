@@ -1,0 +1,14 @@
+eClaire was initially developed during a hack day at Kogan.com on May 22nd 2015.
+
+Original authors prior to public release (in alphabetical order):
+
+Claire Pitchford
+Dylan Leigh
+Goran Stefkovski
+Jesse O'Connor
+Ken Ding
+Lynden Noye
+Michael Cooper
+Nam Ngo
+Sean Kozer
+Simon Knox
