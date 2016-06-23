@@ -70,7 +70,7 @@ def generate_pdf(card):
 
     pdf.multi_cell(0, 18, txt=card.name.upper(), align='L')
 
-    qrcode = generate_qr_code(card.url)
+    qrcode = generate_qr_code(card.shortUrl)
     qrcode_file = mktemp(suffix='.png', prefix='trello_qr_')
     qrcode.save(qrcode_file)
     pdf.image(qrcode_file, 118, 35, 20, 20)
