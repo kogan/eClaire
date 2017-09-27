@@ -91,7 +91,7 @@ class EClaire(object):
         for name, config in self.boards.iteritems():
             board = self.trello_client.get_board(config['id'])
             labels = {}
-            for label in board.get_labels(limit=100):
+            for label in board.get_labels(limit=1000):
                 if label.name in SPECIAL_LABELS:
                     labels[label.name] = label
             missing = set(SPECIAL_LABELS) - set(labels.keys())
