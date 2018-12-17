@@ -86,7 +86,7 @@ def generate_pdf(card):
                         if label.name not in SPECIAL_LABELS])
     pdf.multi_cell(0, 0, labels, 0, 'R')
 
-    return pdf.output(dest='S')
+    return pdf.output(dest='S').encode('latin-1')
 
 
 def generate_qr_code(url):

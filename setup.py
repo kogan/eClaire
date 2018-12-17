@@ -21,7 +21,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'requests >= 2.6.0',
-        'py-trello == 0.4.3',
+        'py-trello == 0.14.0',
         'fpdf >= 1.7.2',
         'pillow >= 2.9.0',
         'qrcode == 5.1',

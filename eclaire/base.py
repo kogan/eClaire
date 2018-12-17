@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from __future__ import print_function
+
 import logging
 import sys
 
@@ -47,7 +49,7 @@ class EClaire(object):
         Process each board in self.boards
         """
 
-        for name, board_config in self.boards.iteritems():
+        for name, board_config in self.boards.items():
             log.info('Polling %s', name)
             processed = self.process_board(board_config, dry_run)
 
@@ -77,8 +79,8 @@ class EClaire(object):
         """
         data = []
         board = self.trello_client.get_board(board_id)
-        for card in board.all_cards():
-            if FILTER_LABEL in [l.name for l in card.labels]:
+        for card in board.open_cards():
+            if card.labels and FILTER_LABEL in [l.name for l in card.labels]:
                 card.fetch_actions()
                 data.append(card)
 
@@ -88,7 +90,7 @@ class EClaire(object):
         """
         Store object references for special labels
         """
-        for name, config in self.boards.iteritems():
+        for name, config in self.boards.items():
             board = self.trello_client.get_board(config['id'])
             labels = {}
             for label in board.get_labels(limit=1000):
@@ -133,6 +135,6 @@ class EClaire(object):
         Fetch all board IDs from trello & print them out
         """
         for board in self.trello_client.list_boards():
-            print 'Board:', board.name
-            print '   ID:', board.id
-            print
+            print('Board:', board.name)
+            print('   ID:', board.id)
+            print()
