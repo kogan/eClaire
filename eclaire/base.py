@@ -53,7 +53,7 @@ class EClaire(object):
             log.info('Polling %s', name)
             processed = self.process_board(board_config, dry_run)
 
-            if board_config.get('notify', True) and notify_fn is not None:
+            if board_config.get('notify', False) and notify_fn is not None:
                 for card in processed:
                     notify_fn(card, **notify_config)
 
