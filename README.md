@@ -38,14 +38,18 @@ Below is the configuration we use in production.
 ### Configuring your printer
 
 1. Download and install drivers for your OS at [QL-570 label printer driver](http://support.brother.com/g/b/downloadtop.aspx?c=au&lang=en&prod=lpql570eas):
-  - Driver
-  - CUPS wrapper (if you are on a Linux)
+   - Driver
+   - CUPS wrapper (if you are on a Linux)
 2. Switch on your printer
 3. Verify that your printer appears on [http://localhost:631/](http://localhost:631/) (CUPS admin page):
-  - Note down your printer name under `Printers > Queue Name`, e.g. `QL-570`
+   - Note down your printer name under `Printers > Queue Name`, e.g. `QL-570`
 4. Set up the correct label size by running:
-  
-  `sudo brpapertoollpr_ql570 -P QL-570 -n trello -w 62 -h 140`
+
+   `sudo brpapertoollpr_ql570 -P QL-570 -n trello -w 62 -h 140`
+5. Set other printer options in the printer configuration
+   - Page Setup > Orientation: Landscape
+   - Finishing > Auto Cut: Cut the medium at the end of the job
+   - Advanced > Roll Fed Media: Continuous roll
 
 ### Set up Trello labels
 
