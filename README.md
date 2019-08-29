@@ -13,7 +13,6 @@ Now we're making it available for all you Trello lovers out there!
 ## Features
 
 - Our very own Claire handwriting font. You can create your own using [myscriptfont.com](http://www.myscriptfont.com/) and/or [FontForge](https://fontforge.github.io/), or use some other ttf font.
-- QR Code on labels linking back to the card on trello
 
 ## Usage
 
@@ -106,7 +105,6 @@ Generate a HipChat API token from your [hipchat account admin](https://www.hipch
 ## Known issues
 
 - Cards with long titles will be truncated (but this encourages you to be brief).
-- Sometimes the QR code will overlap the title for long titles.
 - Card titles are capitalized which might result in lost meaning for CamelCased words.
 - The font provided does not have glyphs for all characters, but should handle most cases for the English alphabet.
 

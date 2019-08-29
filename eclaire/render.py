@@ -19,7 +19,6 @@ import subprocess
 from tempfile import mktemp
 
 from fpdf import FPDF
-import qrcode
 
 
 log = logging.getLogger(__name__)
@@ -70,16 +69,6 @@ def generate_pdf(card):
 
     pdf.multi_cell(0, 18, txt=card.name.upper(), align='L')
 
-    qrcode = generate_qr_code(card.shortUrl)
-    qrcode_file = mktemp(suffix='.png', prefix='trello_qr_')
-    qrcode.save(qrcode_file)
-    pdf.image(qrcode_file, 118, 35, 20, 20)
-    os.unlink(qrcode_file)
-
-    # May we never speak of this again.
-    pdf.set_fill_color(255, 255, 255)
-    pdf.rect(0, 55, 140, 20, 'F')
-
     pdf.set_font('Clairifont', '', 16)
     pdf.set_y(-4)
     labels = ', '.join([label.name for label in card.labels
@@ -87,18 +76,3 @@ def generate_pdf(card):
     pdf.multi_cell(0, 0, labels, 0, 'R')
 
     return pdf.output(dest='S').encode('latin-1')
-
-
-def generate_qr_code(url):
-    """ Generate a QR Code for the given URL and return an Image file"""
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=4,
-    )
-
-    qr.add_data(url)
-    qr.make(fit=True)
-
-    return qr.make_image()

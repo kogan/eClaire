@@ -24,7 +24,6 @@ setup(
         'py-trello == 0.14.0',
         'fpdf >= 1.7.2',
         'pillow >= 2.9.0',
-        'qrcode == 5.1',
         'pyyaml == 3.11',
         'pyOpenSSL >= 0.15.1',
         'pyasn1 >= 0.1.9',
