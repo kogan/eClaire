@@ -1,15 +1,28 @@
 version: 2.1
 
-jobs:
-  test:
-    docker:
-      - image: circleci/python:3.7
-    steps:
-      - checkout
-      - run: "true"
-
 workflows:
   version: 2
-  test:
+  lint:
     jobs:
-      - test
+      - lint
+
+jobs:
+  lint:
+    docker:
+      - image: circleci/python:3.7
+    resource_class: small
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - pre-commit-{{ checksum ".pre-commit-config.yaml" }}
+      - run:
+          name: Install Precommit
+          command: sudo pip install pre-commit
+      - run:
+          name: Run Precommit
+          command: pre-commit run --show-diff-on-failure --source origin/develop --origin HEAD
+      - save_cache:
+          paths:
+              - /home/circleci/.cache/pre-commit
+          key: pre-commit-{{ checksum ".pre-commit-config.yaml" }}

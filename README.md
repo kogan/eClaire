@@ -1,10 +1,10 @@
 # eClaire Trello printer
 
-eClaire prints Trello cards from a label printer automatically! It's simple and easy, all you need to do as a Trello user is add a "PRINTME" label to your Trello card. 
+eClaire prints Trello cards from a label printer automatically! It's simple and easy, all you need to do as a Trello user is add a "PRINTME" label to your Trello card.
 
 Having a physical wall and a Trello board is not without it's own pain - we had to keep the two in sync and for months we were typing a card in trello and writing a physical card for the wall and this overhead was not sitting well with us as a fast paced, efficient team.
 
-As a result, eClaire was born on the Kogan.com hackday (May 22nd 2015). 
+As a result, eClaire was born on the Kogan.com hackday (May 22nd 2015).
 
 Now we're making it available for all you Trello lovers out there!
 
@@ -127,7 +127,7 @@ Current style checking tools:
 
 Note:
 
-    You must have python3.6 available on your path, as it is required for some
+    You must have python3.7 available on your path, as it is required for some
     of the hooks.
 
 ## License
