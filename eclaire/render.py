@@ -55,7 +55,7 @@ def generate_pdf(card):
     :param card: dict from fetcher.py
     :return: Binary PDF buffer
     """
-    from eclaire.base import SPECIAL_LABELS
+    from eclaire.base import SPECIAL_LABELS, MAX_LABEL_CHARS
 
     pdf = FPDF('L', 'mm', (62, 140))
     pdf.set_margins(2.8, 2.8, 2.8)
@@ -72,7 +72,7 @@ def generate_pdf(card):
     pdf.set_font('Clairifont', '', 16)
     pdf.set_y(-4)
     labels = ', '.join([label.name for label in card.labels
-                        if label.name not in SPECIAL_LABELS])
+                        if label.name not in SPECIAL_LABELS])[:MAX_LABEL_CHARS]
     pdf.multi_cell(0, 0, labels, 0, 'R')
 
     return pdf.output(dest='S').encode('latin-1')
