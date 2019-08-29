@@ -61,6 +61,3 @@ target/
 
 # pkl file for font cache
 *.pkl
-
-# Config file
-*.yml
