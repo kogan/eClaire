@@ -56,10 +56,10 @@ eClaire uses labels to find cards to print, so please create the labels `PRINTME
 all of your boards for eClaire to use.
 
 ### Set Up eClaire
-1. (optional) Create a [virtual env](http://docs.python-guide.org/en/latest/dev/virtualenvs/) and activate it
-2. `pip install eclaire`
-3. Start creating an `eclaire.yml` from the example below
+1. Run `pipenv install eclaire`
+2. Start creating an `eclaire.yml` from the example below
   - [Setup trello API credentials](#trello-credentials)
+  - (optional) [QR Codes](#optional-qr-codes)
   - (optional) [Setup Hipchat notifications](#optional-hipchat-notifications)
   - To find the `id` of your boards, you can use `--list-boards`.
     - eg `eclaire --config eclaire.yml --list-boards`
@@ -88,6 +88,14 @@ boards:
    - Replace the `...` with your Key from before.
 3. Copy the key and member token into your `eclaire.yml` file.
 
+### (OPTIONAL) QR Codes
+
+If you wish to enable QR codes in the bottom right hand corner of cards, then add this to your `eclaire.yml` file:
+
+```yaml
+qrcode_enabled: true
+```
+
 ### (OPTIONAL) Hipchat notifications
 
 If you wish to enable hipchat notifications from eClaire, then add this to your `eclaire.yml` file:
@@ -105,6 +113,7 @@ Generate a HipChat API token from your [hipchat account admin](https://www.hipch
 ## Known issues
 
 - Cards with long titles will be truncated (but this encourages you to be brief).
+- Sometimes the QR code will overlap the title for long titles.
 - Card titles are capitalized which might result in lost meaning for CamelCased words.
 - The font provided does not have glyphs for all characters, but should handle most cases for the English alphabet.
 
@@ -132,7 +141,7 @@ Note:
 
 ## License
 
-Copyright 2015 KOGAN.COM PTY LTD
+Copyright 2019 KOGAN.COM PTY LTD
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

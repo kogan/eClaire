@@ -38,7 +38,11 @@ def main():
         eclaire.list_boards()
         return
 
-    eclaire = EClaire(credentials=config["credentials"], boards=config["boards"])
+    eclaire = EClaire(
+        credentials=config["credentials"],
+        boards=config["boards"],
+        qrcode_enabled=config.get("qrcode_enabled", False),
+    )
 
     log.info("Discovering labels")
     eclaire.discover_labels()

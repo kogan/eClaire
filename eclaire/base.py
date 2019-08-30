@@ -20,12 +20,13 @@ class PrintingError(Exception):
 
 
 class EClaire(object):
-    def __init__(self, credentials, boards=None):
+    def __init__(self, credentials, boards=None, qrcode_enabled=False):
         self.trello_client = TrelloClient(
             api_key=credentials["public_key"], token=credentials["member_token"]
         )
 
         self.boards = boards
+        self.qrcode_enabled = qrcode_enabled
 
     def process_boards(self, dry_run=False, notify_fn=None, notify_config=None):
         """
@@ -48,7 +49,7 @@ class EClaire(object):
         for card in self.fetch_cards(board_id=board_config["id"]):
             log.info('Printing card "%s"', card.name)
 
-            pdf = generate_pdf(card)
+            pdf = generate_pdf(card=card, qrcode_enabled=self.qrcode_enabled)
             if not dry_run:
                 print_card(pdf, printer_name=board_config["printer"])
             self.update_card(card, board_config)
@@ -93,7 +94,7 @@ class EClaire(object):
         At the time of writing there is no way to remove a label with py-trello
         """
         self.trello_client.fetch_json(
-            "/cards/" + card.id + "/idLabels/" + label.id, http_method="DELETE"
+            "/cards/{}/idLabels/{}".format(card.id, label.id), http_method="DELETE"
         )
 
     def update_card(self, card, board_config):
