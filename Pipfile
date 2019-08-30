@@ -13,6 +13,7 @@ flake8-builtins = "*"
 flake8-comprehensions = "*"
 isort = "*"
 pre-commit = "*"
+ipython = "*"
 
 [packages]
 eclaire = {editable = true,path = "."}
