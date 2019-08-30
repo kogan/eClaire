@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run: "true"
 
- workflows:
+workflows:
   version: 2
   test:
     jobs:
