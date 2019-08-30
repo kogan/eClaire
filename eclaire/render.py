@@ -50,6 +50,10 @@ def generate_pdf(card):
 
     pdf.multi_cell(0, 18, txt=card.name.upper(), align="L")
 
+    # May we never speak of this again.
+    pdf.set_fill_color(255, 255, 255)
+    pdf.rect(0, 55, 140, 20, "F")
+
     pdf.set_font("Clairifont", "", 16)
     pdf.set_y(-4)
     labels = ", ".join([label.name for label in card.labels if label.name not in SPECIAL_LABELS])[
