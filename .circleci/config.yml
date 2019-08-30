@@ -21,7 +21,7 @@ jobs:
           command: sudo pip install pre-commit
       - run:
           name: Run Precommit
-          command: pre-commit run --show-diff-on-failure --source origin/develop --origin HEAD
+          command: pre-commit run --show-diff-on-failure --source origin/master --origin HEAD
       - save_cache:
           paths:
               - /home/circleci/.cache/pre-commit
