@@ -1,10 +1,10 @@
 # eClaire Trello printer
 
-eClaire prints Trello cards from a label printer automatically! It's simple and easy, all you need to do as a Trello user is add a "PRINTME" label to your Trello card. 
+eClaire prints Trello cards from a label printer automatically! It's simple and easy, all you need to do as a Trello user is add a "PRINTME" label to your Trello card.
 
 Having a physical wall and a Trello board is not without it's own pain - we had to keep the two in sync and for months we were typing a card in trello and writing a physical card for the wall and this overhead was not sitting well with us as a fast paced, efficient team.
 
-As a result, eClaire was born on the Kogan.com hackday (May 22nd 2015). 
+As a result, eClaire was born on the Kogan.com hackday (May 22nd 2015).
 
 Now we're making it available for all you Trello lovers out there!
 
@@ -13,7 +13,6 @@ Now we're making it available for all you Trello lovers out there!
 ## Features
 
 - Our very own Claire handwriting font. You can create your own using [myscriptfont.com](http://www.myscriptfont.com/) and/or [FontForge](https://fontforge.github.io/), or use some other ttf font.
-- QR Code on labels linking back to the card on trello
 
 ## Usage
 
@@ -57,10 +56,10 @@ eClaire uses labels to find cards to print, so please create the labels `PRINTME
 all of your boards for eClaire to use.
 
 ### Set Up eClaire
-1. (optional) Create a [virtual env](http://docs.python-guide.org/en/latest/dev/virtualenvs/) and activate it
-2. `pip install eclaire`
-3. Start creating an `eclaire.yml` from the example below
+1. Run `pipenv install eclaire`
+2. Start creating an `eclaire.yml` from the example below
   - [Setup trello API credentials](#trello-credentials)
+  - (optional) [QR Codes](#optional-qr-codes)
   - (optional) [Setup Hipchat notifications](#optional-hipchat-notifications)
   - To find the `id` of your boards, you can use `--list-boards`.
     - eg `eclaire --config eclaire.yml --list-boards`
@@ -89,6 +88,14 @@ boards:
    - Replace the `...` with your Key from before.
 3. Copy the key and member token into your `eclaire.yml` file.
 
+### (OPTIONAL) QR Codes
+
+If you wish to enable QR codes in the bottom right hand corner of cards, then add this to your `eclaire.yml` file:
+
+```yaml
+qrcode_enabled: true
+```
+
 ### (OPTIONAL) Hipchat notifications
 
 If you wish to enable hipchat notifications from eClaire, then add this to your `eclaire.yml` file:
@@ -110,9 +117,31 @@ Generate a HipChat API token from your [hipchat account admin](https://www.hipch
 - Card titles are capitalized which might result in lost meaning for CamelCased words.
 - The font provided does not have glyphs for all characters, but should handle most cases for the English alphabet.
 
+## Contributing
+
+We use `pre-commit <https://pre-commit.com/>` to enforce our code style rules
+locally before you commit them into git. Once you install the pre-commit library
+(locally via pip is fine), just install the hooks::
+
+    pre-commit install -f --install-hooks
+
+The same checks are executed on the build server, so skipping the local linting
+(with `git commit --no-verify`) will only result in a failed test build.
+
+Current style checking tools:
+
+- flake8: python linting
+- isort: python import sorting
+- black: python code formatting
+
+Note:
+
+    You must have python3.7 available on your path, as it is required for some
+    of the hooks.
+
 ## License
 
-Copyright 2015 KOGAN.COM PTY LTD
+Copyright 2019 KOGAN.COM PTY LTD
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2015 KOGAN.COM PTY LTD
+# Copyright 2019 KOGAN.COM PTY LTD
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,17 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import yaml
-import time
-import logging
 import argparse
-from trello import ResourceUnavailable
-from requests.exceptions import RequestException
+import logging
+import time
 
-# components of the system
-from eclaire.notifications import hipchat_notification
+import yaml
 from eclaire.base import EClaire
-
+from eclaire.notifications import hipchat_notification
+from requests.exceptions import RequestException
+from trello import ResourceUnavailable
 
 BASE_WAIT = 30
 MAX_WAIT = 30 * 60
@@ -34,27 +32,15 @@ log = logging.getLogger(__name__)
 def main():
     setup_logging()
     parser = argparse.ArgumentParser()
+    parser.add_argument("--dry-run", action="store_true", help="Dont actually print the labels.")
     parser.add_argument(
-        '--dry-run',
-        action='store_true',
-        help='Dont actually print the labels.',
-    )
-    parser.add_argument(
-        '--config',
-        type=argparse.FileType('r'),
+        "--config",
+        type=argparse.FileType("r"),
         required=True,
-        help='Configuration file (for tokens & board setup)',
+        help="Configuration file (for tokens & board setup)",
     )
-    parser.add_argument(
-        '--list-boards',
-        action='store_true',
-        help='Discover board and label IDs',
-    )
-    parser.add_argument(
-        '--run-once',
-        action='store_true',
-        help="Exit after running once",
-    )
+    parser.add_argument("--list-boards", action="store_true", help="Discover board and label IDs")
+    parser.add_argument("--run-once", action="store_true", help="Exit after running once")
 
     args = parser.parse_args()
 
@@ -62,16 +48,17 @@ def main():
 
     if args.list_boards:
         # List available boards then exit
-        eclaire = EClaire(credentials=config['credentials'])
+        eclaire = EClaire(credentials=config["credentials"])
         eclaire.list_boards()
         return
 
     eclaire = EClaire(
-        credentials=config['credentials'],
-        boards=config['boards']
+        credentials=config["credentials"],
+        boards=config["boards"],
+        qrcode_enabled=config.get("qrcode_enabled", False),
     )
 
-    log.info('Discovering labels')
+    log.info("Discovering labels")
     eclaire.discover_labels()
 
     wait_time = BASE_WAIT
@@ -82,15 +69,15 @@ def main():
             eclaire.process_boards(
                 dry_run=args.dry_run,
                 notify_fn=hipchat_notification,
-                notify_config=config.get('hipchat')
+                notify_config=config.get("hipchat"),
             )
         except (ResourceUnavailable, RequestException):
-            log.exception('An error occurred polling Trello')
+            log.exception("An error occurred polling Trello")
 
             if args.run_once:
                 break
 
-            log.warning('Waiting %d seconds before trying again', wait_time)
+            log.warning("Waiting %d seconds before trying again", wait_time)
             time.sleep(wait_time)
             # exponential wait time up to MAX_WAIT on a timeout error
             wait_time = min(MAX_WAIT, wait_time * 2)
@@ -98,7 +85,7 @@ def main():
 
         wait_time = BASE_WAIT
 
-        log.info('-------')
+        log.info("-------")
 
         if args.run_once:
             break
@@ -108,10 +95,9 @@ def main():
 
 def setup_logging():
     logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)-15s %(name)-15s %(levelname)-8s %(message)s',
+        level=logging.INFO, format="%(asctime)-15s %(name)-15s %(levelname)-8s %(message)s"
     )
-    logging.getLogger('requests').setLevel(logging.ERROR)
+    logging.getLogger("requests").setLevel(logging.ERROR)
 
 
 if __name__ == "__main__":

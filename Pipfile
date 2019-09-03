@@ -1,0 +1,22 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "==18.9b0"
+flake8 = "*"
+flake8-blind-except = "*"
+flake8-pep3101 = "*"
+flake8-isort = "*"
+flake8-builtins = "*"
+flake8-comprehensions = "*"
+isort = "*"
+pre-commit = "*"
+ipython = "*"
+
+[packages]
+eclaire = {editable = true,path = "."}
+
+[requires]
+python_version = "3.7"

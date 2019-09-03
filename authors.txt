@@ -1,10 +1,11 @@
-eClaire was initially developed during a hack day at Kogan.com on May 22nd 2015.
+eClaire was initially developed during a hack day at Kogan.com on May 22nd 2015. Read more about it here - https://devblog.kogan.com/blog/automated-trello-card-printing
 
-Original authors prior to public release (in alphabetical order):
+Authors including before/after public release (in alphabetical order):
 
 Claire Pitchford
 Dylan Leigh
 Goran Stefkovski
+Jake Barber
 Jesse O'Connor
 Ken Ding
 Lynden Noye

@@ -53,6 +53,9 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+# pyenv python configuration file
+.python-version
+
 # PyBuilder
 target/
 
