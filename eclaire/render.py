@@ -63,7 +63,7 @@ def generate_pdf(card, qrcode_enabled=True) -> str:
 
     font = pkg_resources.resource_filename("eclaire", "font/Clairifont.ttf")
     pdf.add_font("Clairifont", fname=font, uni=True)
-    pdf.set_font("Clairifont", size=48)
+    pdf.set_font("Clairifont", size=40)
 
     pdf.multi_cell(0, 18, txt=card.name.upper(), align="L")
 
@@ -78,7 +78,7 @@ def generate_pdf(card, qrcode_enabled=True) -> str:
     pdf.set_fill_color(255, 255, 255)
     pdf.rect(0, 55, 140, 20, "F")
 
-    pdf.set_font("Clairifont", "", 16)
+    pdf.set_font("Clairifont", "", 14)
     pdf.set_y(-4)
     labels = ", ".join([label.name for label in card.labels if label.name not in SPECIAL_LABELS])[
         :MAX_LABEL_CHARS

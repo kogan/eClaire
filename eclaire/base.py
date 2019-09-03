@@ -26,7 +26,7 @@ log = logging.getLogger(__name__)
 FILTER_LABEL = "PRINTME"
 DONE_LABEL = "PRINTED"
 SPECIAL_LABELS = (FILTER_LABEL, DONE_LABEL)
-MAX_LABEL_CHARS = 50
+MAX_LABEL_CHARS = 60
 
 
 class PrintingError(Exception):
