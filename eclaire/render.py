@@ -46,7 +46,7 @@ def print_card(pdf, printer_name):
         raise PrintingError("Return code {}".format(process.returncode))
 
 
-def generate_pdf(card, qrcode_enabled=False) -> str:
+def generate_pdf(card, qrcode_enabled=True) -> str:
     """
     Make a PDF from a card
 

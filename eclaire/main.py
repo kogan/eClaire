@@ -55,7 +55,7 @@ def main():
     eclaire = EClaire(
         credentials=config["credentials"],
         boards=config["boards"],
-        qrcode_enabled=config.get("qrcode_enabled", False),
+        qrcode_enabled=config.get("qrcode_enabled", True),
     )
 
     log.info("Discovering labels")

@@ -34,7 +34,7 @@ class PrintingError(Exception):
 
 
 class EClaire(object):
-    def __init__(self, credentials, boards=None, qrcode_enabled=False):
+    def __init__(self, credentials, boards=None, qrcode_enabled=True):
         self.trello_client = TrelloClient(
             api_key=credentials["public_key"], token=credentials["member_token"]
         )
