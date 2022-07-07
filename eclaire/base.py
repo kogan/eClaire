@@ -14,7 +14,8 @@
 
 from __future__ import print_function
 
-from eclaire.jira import JiraIntegration
+
+from eclaire.jira_integration import JiraIntegration
 from eclaire.render import print_card
 
 

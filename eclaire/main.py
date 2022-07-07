@@ -62,7 +62,6 @@ def main():
         time.sleep(wait_time)
 
 
-
 def setup_logging():
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)-15s %(name)-15s %(levelname)-8s %(message)s"

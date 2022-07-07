@@ -54,15 +54,16 @@ def generate_epic(title):
     pdf.add_font("Clairifont", fname=font, uni=True)
     pdf.set_font("Clairifont", size=30)
 
-    pdf.multi_cell(0, 18, txt=title, align="L")
+    pdf.write(10, title)
 
     # May we never speak of this again.
     pdf.set_fill_color(255, 255, 255)
     pdf.rect(0, 55, 140, 20, "F")
 
-    pdf.set_font("Clairifont", "", 14)
+    pdf.set_font("Clairifont", "", 20)
     pdf.multi_cell(0, 20)
-    pdf.write(10, "Due Date:\n")
-    pdf.write(0, "Progress: ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
+    pdf.set_y(35)
+    pdf.write(20, "Due Date:\n")
+    pdf.write(0, "Progress: ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
 
     return pdf.output(dest="S").encode("latin-1")

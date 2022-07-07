@@ -16,7 +16,7 @@ class JiraIntegration:
 
     def process(self):
         for key, title in self._get_tickets():
-            yield generate_epic(title)
+            yield generate_epic(f"{key}: {title}")
             self._update_ticket(key)
 
     def _get_tickets(self) -> t.List[t.Tuple[str, str]]:
