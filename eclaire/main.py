@@ -40,18 +40,15 @@ def main():
     parser.add_argument("--run-once", action="store_true", help="Exit after running once")
 
     args = parser.parse_args()
-
     config = yaml.load(args.config)
-
     eclaire = EClaire(credentials=config["credentials"])
-
     wait_time = BASE_WAIT
 
     # Main program loop
     while True:
-        for name, config in config["boards"].items():
+        for name, cfg in config["boards"].items():
             try:
-                eclaire.process_board(config)
+                eclaire.process_board(cfg)
                 wait_time = BASE_WAIT
             except (ResourceUnavailable, RequestException):
                 log.warning("Waiting %d seconds before trying again", wait_time)
@@ -62,10 +59,8 @@ def main():
         log.info("-------")
         if args.run_once:
             break
-
         time.sleep(wait_time)
-        if args.run_once:
-            break
+
 
 
 def setup_logging():

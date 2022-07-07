@@ -52,7 +52,7 @@ def generate_epic(title):
 
     font = pkg_resources.resource_filename("eclaire", "font/Clairifont.ttf")
     pdf.add_font("Clairifont", fname=font, uni=True)
-    pdf.set_font("Clairifont", size=40)
+    pdf.set_font("Clairifont", size=30)
 
     pdf.multi_cell(0, 18, txt=title, align="L")
 
