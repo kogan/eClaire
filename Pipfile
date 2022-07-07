@@ -17,6 +17,7 @@ ipython = "*"
 
 [packages]
 eclaire = {editable = true,path = "."}
+jira = "*"
 
 [requires]
 python_version = "3.7"
