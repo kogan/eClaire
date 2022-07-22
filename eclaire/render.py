@@ -66,7 +66,6 @@ def generate_epic(title):
     pdf.write(10, "Due Date:                Live Date: \n")
     pdf.set_y(55)
     pdf.write(0, "Progress: ")
-    pdf.set_font("arial", size=30)
     pdf.write(0, "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░")
 
-    return pdf.output(dest="S").encode("utf-8")
+    return pdf.output(dest="S").encode("latin-1")
