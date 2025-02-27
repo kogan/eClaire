@@ -14,10 +14,10 @@
 
 import logging
 import subprocess
-
-import pkg_resources
-
+import json
+import os
 from fpdf import FPDF
+from datetime import datetime
 
 log = logging.getLogger(__name__)
 
@@ -42,6 +42,34 @@ def print_card(pdf, printer_name):
     if process.returncode != 0:
         raise PrintingError("Return code {}".format(process.returncode))
 
+def generate_idea(ticket):
+    pdf = FPDF("L", "mm", (62, 140))
+    pdf.set_margins(2.8, 2.8, 2.8)
+    pdf.set_auto_page_break(False, margin=0)
+
+    pdf.add_page()
+
+
+    pdf.add_font("Figtree", fname=os.path.join(os.path.dirname(os.path.abspath(__file__)),"./font/Figtree-Regular.ttf"), uni=True)
+    pdf.set_font("Figtree", size=30)
+
+    pdf.write(10, ticket.fields.summary)
+
+    pdf.set_font("Figtree", size=14)
+    pdf.set_y(15)
+    pdf.multi_cell(0, 5, ticket.fields.customfield_10270)
+
+    # May we never speak of this again.
+    pdf.set_fill_color(255, 255, 255)
+    pdf.rect(0, 55, 140, 20, "F")
+
+    pdf.set_font("Figtree", "", 20)
+    pdf.multi_cell(0, 20)
+    pdf.set_y(40)
+    due_date = datetime.fromisoformat(json.loads(ticket.fields.customfield_10266)['start']).strftime("%B")
+    pdf.write(10, f"Due Date: {due_date} \n")
+
+    return pdf.output(dest="S").encode("latin-1")
 
 def generate_epic(title):
     pdf = FPDF("L", "mm", (62, 140))
@@ -49,10 +77,8 @@ def generate_epic(title):
     pdf.set_auto_page_break(False, margin=0)
 
     pdf.add_page()
-
-    font = pkg_resources.resource_filename("eclaire", "font/Clairifont.ttf")
-    pdf.add_font("Clairifont", fname=font, uni=True)
-    pdf.set_font("Clairifont", size=30)
+    pdf.add_font("Figtree", fname=os.path.join(os.path.abspath(__file__),"./font/Figtree-Regular.ttf"), uni=True)
+    pdf.set_font("Figtree", size=30)
 
     pdf.write(10, title)
 

@@ -40,7 +40,7 @@ def main():
     parser.add_argument("--run-once", action="store_true", help="Exit after running once")
 
     args = parser.parse_args()
-    config = yaml.load(args.config)
+    config = yaml.load(args.config, yaml.Loader)
     eclaire = EClaire(credentials=config["credentials"])
     wait_time = BASE_WAIT
 
