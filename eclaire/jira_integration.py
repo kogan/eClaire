@@ -1,4 +1,4 @@
-from jira import JIRA
+from jira import JIRA, JIRAError
 import typing as t
 import logging
 
@@ -34,4 +34,7 @@ class JiraIntegration:
         labels = issue.fields.labels
         labels.remove("printme")
         labels.append("printed")
-        issue.update(fields={"labels": labels})
+        try:
+            issue.update(fields={"labels": labels})
+        except JIRAError:
+            pass
